@@ -1,5 +1,6 @@
 package com.example.haritha.dicegame;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,9 +10,12 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +25,11 @@ public class MainActivity extends AppCompatActivity {
     TextView rollResult;
     Button rollButton;
     int die1;
+    int die2;
+    int die3;
+
+    ArrayList<Integer> dice;
+    ArrayList<ImageView> diceImageViews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +53,48 @@ public class MainActivity extends AppCompatActivity {
         rollButton=findViewById(R.id.rollButton);
 
         rand=new Random();
+        dice=new ArrayList();
 
+        ImageView die1image=findViewById(R.id.die1Image);
+        ImageView die2image=findViewById(R.id.die2Image);
+        ImageView die3image=findViewById(R.id.die3Image);
 
+        diceImageViews =new ArrayList<ImageView>();
+        diceImageViews.add(die1image);
+        diceImageViews.add(die2image);
+        diceImageViews.add(die3image);
     }
     public void rollDice(View v){
 
 
         int die1=rand.nextInt(6)+1;
-        String randomValue="You rolled die1"+die1;
+        int die2=rand.nextInt(6)+1;
+        int die3=rand.nextInt(6)+1;
+
+        dice.clear();
+        dice.add(die1);
+        dice.add(die2);
+        dice.add(die3);
+
+        String randomValue="You rolled a \t"+die1+"\t a \t"+die2+"\t a \t"+die3;
         rollResult.setText(randomValue);
+
+        for(int i=0;i<3;i++){
+                String imageName="dice"+dice.get(i)+".png";
+                try{
+
+                    InputStream stream=getAssets().open(imageName);
+                    Drawable d= Drawable.createFromStream(stream,null);
+                    diceImageViews.get(i).setImageDrawable(d);
+                }catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+        }
+
+
+
+
         Toast.makeText(getApplicationContext(),randomValue,Toast.LENGTH_SHORT).show();
     }
 

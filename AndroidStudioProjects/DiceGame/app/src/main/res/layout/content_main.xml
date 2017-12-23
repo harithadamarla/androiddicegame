@@ -13,15 +13,41 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Let's play the game!"/>
-<!--j-->
+
 
     <Button
         android:id="@+id/rollButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="rollDice"
-        android:layout_below="@+id/rollResult"
+        android:layout_below="@+id/die2Image"
         android:layout_centerHorizontal="true"
         android:text="Roll" />
-
+    <ImageView
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:id="@+id/die1Image"
+    android:layout_alignParentLeft="true"
+    android:layout_marginTop="25dp"
+    android:src="@drawable/dice1"
+    android:layout_below="@+id/rollResult"
+    />
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/die2Image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/dice1"
+        android:layout_below="@+id/rollResult"
+        />
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/die3Image"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/dice1"
+        android:layout_below="@+id/rollResult"
+        />
 </android.widget.RelativeLayout>
